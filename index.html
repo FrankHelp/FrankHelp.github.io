@@ -6,7 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studienteilnahme</title>
     <style>
-        body { font-family: Arial, sans-serif; font-size: 1.2rem; text-align: center; margin-top: 50px; line-height: 1.5;}
+        html, body { font-family: Arial, sans-serif; font-size: 1.2rem; text-align: center; margin-top: 50px; line-height: 1.5; height: 100%;}
+        @media only screen and (min-width: 600px) {
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+        }
         button { padding: 10px 20px; font-size: 1.5rem; background: #4CAF50; color: white; border: none; cursor: pointer; }
         #output { margin: 20px auto; padding: 15px; border: 1px solid #ddd; max-width: 500px; }
     </style>
@@ -14,10 +27,13 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
-    <h3>Thank you for participating :)</h3>
-    <p>Participating takes about 15-20 min, if you're ready press the button and remember your assigned <strong>ID</strong> and <strong>condition</strong>.</p>
-    <button id="generate">generate</button>
-    <div id="output"></div>
+    <div>
+        <h3>Thank you for participating :)</h3>
+        <p>Participating takes about 15-20 min, if you're ready press the button and <strong>remember</strong> your assigned <strong>ID</strong> and <strong>condition</strong>.</p>
+        <button id="generate">generate</button>
+        <div id="output"></div>
+    </div>
+    
 
     <script type="module">
         // Firebase Config hier einfügen!
@@ -74,7 +90,7 @@
         });
         
             const output = document.getElementById('output');
-            output.innerHTML = `Your ID: <strong>${participantId}</strong> <br> Your Condition: <strong>${assignedCondition}</strong> <br><a href="https://studentische-umfragen.uni-hamburg.de/index.php/415169?lang=en">Get Redirected Here</a>`;
+            output.innerHTML = `Your ID: <strong>${participantId}</strong> <br> Your Condition: <strong>${assignedCondition}</strong> <br><a href="https://studentische-umfragen.uni-hamburg.de/index.php/415169?lang=en" target="_blank">Let's start!</a>`;
 
         } catch (error) {
             console.error("Fehler:", error);
